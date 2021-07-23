@@ -8,7 +8,7 @@
             <p class="panel-heading">
               Contacts
             </p>
-            <p v-if="userList.length == 0">NO USERS</p>
+            <p v-if="userList.length === 0">NO USERS</p>
             <template
               v-for="(user, index) in userList"
             >
@@ -102,7 +102,9 @@ export default {
     }
   },
   created() {
-    this.userList = JSON.parse(localStorage.contacts)
+    if (localStorage.contacts) {
+      this.userList = JSON.parse(localStorage.contacts)
+    }
   },
   methods: {
     changeRouter (user, index) {
