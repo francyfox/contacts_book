@@ -77,7 +77,6 @@
                     <a @click.prevent="addAndChangeItem" href="#" class="button is-link is-small">SEND</a>
                   </div>
                 </div>
-                <div class="title is-5">BACKUP</div>
               </div>
             </div>
           </div>
@@ -137,8 +136,14 @@ export default {
     },
 
     undo () {
-      this.Info = this.backupStorage
-      localStorage.setItem('contacts', JSON.stringify(this.Info))
+      if (this.backupStorage.length > 0) {
+        this.Info = this.backupStorage
+        localStorage.setItem('contacts', JSON.stringify(this.Info))
+      } else {
+        this.danger = true
+        this.msgTitle = 'Undo Failed'
+        this.msgText = 'Old data empty'
+      }
     },
 
     editItem (key, value, index) {
