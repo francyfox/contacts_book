@@ -1,7 +1,11 @@
 export default {
   target: 'static',
   mode: 'spa',
-
+  server: {
+    protocol: process.env.PROTOCOL,
+    host: process.env.HOST,
+    port: process.env.PORT
+  },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
